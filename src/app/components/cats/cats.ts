@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Cat } from '../../services/cat';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
   selector: 'app-cats',
   imports: [CommonModule],
@@ -16,6 +17,7 @@ export class Cats implements OnInit {
   isLoading = this.catsService.isLoading;
   breedsError = this.catsService.breedsError;
   hasBreeds = this.catsService.hasBreads;
+  selectedBreedImage = this.catsService.selectedBreedImage;
 
   ngOnInit(): void {
     this.catsService.loadBreeds();
