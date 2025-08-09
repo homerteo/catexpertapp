@@ -1,1 +1,156 @@
-<p>register works!</p>
+<div class="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+
+    <!-- Header -->
+    <div class="text-center">
+      <h1 class="text-3xl font-light text-gray-900 tracking-wide">
+        Crear Cuenta
+      </h1>
+      <p class="mt-4 text-sm text-gray-600 font-light">
+        Regístrate para explorar razas de gatos
+      </p>
+    </div>
+
+    <!-- Error Message -->
+    @if (authError()) {
+      <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md">
+        <div class="flex">
+          <div class="ml-3">
+            <p class="text-sm font-light">{{ authError() }}</p>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- Register Form -->
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mt-8 space-y-6">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="firstName" class="block text-sm font-light text-gray-700 tracking-wide">
+            NOMBRE
+          </label>
+          <div class="mt-2">
+            <input
+              id="firstName"
+              name="firstName"
+              type="text"
+              formControlName="firstName"
+              autocomplete="given-name"
+              class="w-full px-4 py-3 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-400 transition-colors duration-200 font-light"
+              [class.border-red-400]="hasFieldError('firstName')"
+              placeholder="Tu nombre"
+            />
+            @if (hasFieldError('firstName')) {
+              <p class="mt-2 text-sm text-red-600 font-light">
+                El nombre debe tener por lo menos 5 caracteres y es obligatorio
+              </p>
+            }
+          </div>
+        </div>
+
+        <div>
+          <label for="lastName" class="block text-sm font-light text-gray-700 tracking-wide">
+            APELLIDO
+          </label>
+          <div class="mt-2">
+            <input
+              id="lastName"
+              name="lastName"
+              type="text"
+              formControlName="lastName"
+              autocomplete="family-name"
+              class="w-full px-4 py-3 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-400 transition-colors duration-200 font-light"
+              [class.border-red-400]="hasFieldError('lastName')"
+              placeholder="Tu apellido"
+            />
+            @if (hasFieldError('lastName')) {
+              <p class="mt-2 text-sm text-red-600 font-light">
+                El apellido debe tener al menos 5 caracteres y es obligatorio
+              </p>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-light text-gray-700 tracking-wide">
+          EMAIL
+        </label>
+        <div class="mt-2">
+          <input
+            id="email"
+            name="email"
+            type="email"
+            formControlName="email"
+            autocomplete="email"
+            class="w-full px-4 py-3 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-400 transition-colors duration-200 font-light"
+            [class.border-red-400]="hasFieldError('email')"
+            placeholder="tu@email.com"
+          />
+          @if (hasFieldError('email')) {
+            <p class="mt-2 text-sm text-red-600 font-light">
+              El email debe coicidir con el patrón de email y es obligatorio
+            </p>
+          }
+        </div>
+      </div>
+
+      <div>
+        <label for="password" class="block text-sm font-light text-gray-700 tracking-wide">
+          CONTRASEÑA
+        </label>
+        <div class="mt-2 relative">
+          <input
+            id="password"
+            name="password"
+            type="password"
+            formControlName="password"
+            autocomplete="new-password"
+            class="w-full px-4 py-3 pr-12 border border-gray-200 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-400 transition-colors duration-200 font-light"
+            [class.border-red-400]="hasFieldError('password')"
+            placeholder="Mínimo 4 caracteres"
+          />
+        </div>
+
+        @if (hasFieldError('password')) {
+          <p class="mt-2 text-sm text-red-600 font-light">
+            El password debe tener por lo menos 4 caracteres y es obligatorio
+          </p>
+        }
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          [disabled]="isLoading() || submitting()"
+          class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-light text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+        >
+          @if (isLoading() || submitting()) {
+            <div class="flex items-center">
+              <div class="animate-spin rounded-full h-4 w-4 border border-white border-t-transparent mr-2"></div>
+              Creando cuenta...
+            </div>
+          } @else {
+            CREAR CUENTA
+          }
+        </button>
+      </div>
+
+      <div class="text-center">
+        <p class="text-sm text-gray-600 font-light">
+          ¿Ya tienes una cuenta?
+          <button
+            type="button"
+            (click)="goToLogin()"
+            class="ml-1 text-gray-900 hover:text-gray-700 font-light underline transition-colors duration-200"
+          >
+            Inicia sesión aquí
+          </button>
+        </p>
+      </div>
+
+    </form>
+
+  </div>
+</div>

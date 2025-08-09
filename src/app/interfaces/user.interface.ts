@@ -17,3 +17,10 @@ export interface AuthResponse {
   token?: string,
   message?: string,
 }
+
+export interface RegisterData {
+  email: string,
+  password: string,
+  firstName: string,
+  lastName: string,
+}

@@ -87,16 +87,17 @@
         </button>
       </div>
 
+      <div class="text-center">
+        <p class="text-sm text-gray-600 font-light">¿No tienes cuenta?</p>
+        <button
+          type="button"
+          class="ml-1 text-gray-900 hover:text-gray-700 font-light underline transition-colors duration-200"
+          (click)="goToRegister()"
+        >Crear usuario</button>
+      </div>
     </form>
-
-    <!-- Footer -->
-    <div class="text-center">
-      <p class="text-xs text-gray-400 font-light">
-        Credenciales de prueba: admin@catapp.com / password
-      </p>
-    </div>
 
   </div>
 
-  <pre>{{ loginForm.errors | json}}</pre>
+<!--   <pre>{{ loginForm.errors | json}}</pre> -->
 </div>

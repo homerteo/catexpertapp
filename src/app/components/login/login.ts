@@ -74,4 +74,8 @@ export class Login {
     const field = this.loginForm.get(fieldName);
     return !!(field && !field.valid && field.touched);
   }
+
+  goToRegister() {
+    this.router.navigate(['register'])
+  }
 }

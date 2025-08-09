@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { AuthResponse, LoginCredentials, User } from '../interfaces/user.interface';
+import { AuthResponse, LoginCredentials, RegisterData, User } from '../interfaces/user.interface';
 import { Observable, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -102,6 +102,45 @@ export class Users {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('authToken');
     this.router.navigate(['login']);
+  }
+
+  createUser(userData: RegisterData): Observable<AuthResponse> {
+    this._isLoading.set(true);
+    this._authError.set(null);
+
+    return new Observable<AuthResponse>(o => {
+      try {
+        const existingUser = this._users().find(u => u.email === userData.email);
+        if(existingUser) {
+          this._authError.set('El usuario ya está registrado');
+          o.next({success: false, message: 'El usuario ya está registrado'});
+          return;
+        }
+
+        const newUser: User = {
+          id: Math.random().toString(36).substring(2, 9),
+          email: userData.email,
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          isActive: true,
+        }
+
+        this._users.set([...this._users(), newUser])
+        this.router.navigate(['login']);
+        o.next({
+          success: true,
+          user: newUser,
+          message: 'Usuario registrado',
+        });
+        o.complete();
+      } catch(error) {
+        this._authError.set('Error al registrar el usuario');
+        o.next({success: false, message: 'Error al registrar el usuario'});
+        o.complete();
+      } finally {
+        this._isLoading.set(false);
+      }
+    });
   }
 
 }
