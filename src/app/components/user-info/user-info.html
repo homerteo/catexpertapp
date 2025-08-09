@@ -1,1 +1,52 @@
-<p>user-info works!</p>
+<div class="min-h-screen bg-gray-50">
+  <div class="container mx-auto px-4 py-16 max-w-2xl">
+
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-3xl font-light text-gray-900 tracking-wide">
+        Información del Usuario
+      </h1>
+      <div class="w-16 h-0.5 bg-gray-300 mx-auto mt-4"></div>
+    </div>
+
+    @if (userInfo()) {
+      <div class="bg-white border border-gray-200 overflow-hidden shadow-sm">
+        <div class="p-8">
+          <div class="space-y-6">
+
+            <div>
+              <h3 class="text-sm uppercase tracking-wider text-gray-500 font-light mb-4">
+                Información Personal
+              </h3>
+              <div class="space-y-4">
+                <div class="grid grid-cols-3 gap-x-4 py-3 border-b border-gray-50">
+                  <span class="text-xs uppercase tracking-wider text-gray-500 font-light">Nombre</span>
+                  <span class="col-span-2 text-sm text-gray-700 font-light">
+                    {{ userInfo()?.firstName }}
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-3 gap-x-4 py-3 border-b border-gray-50">
+                  <span class="text-xs uppercase tracking-wider text-gray-500 font-light">Apellido</span>
+                  <span class="col-span-2 text-sm text-gray-700 font-light">
+                    {{ userInfo()?.lastName }}
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-3 gap-x-4 py-3 border-b border-gray-50">
+                  <span class="text-xs uppercase tracking-wider text-gray-500 font-light">Email</span>
+                  <span class="col-span-2 text-sm text-gray-700 font-light">
+                    {{ userInfo()?.email }}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    }
+
+  </div>
+</div>

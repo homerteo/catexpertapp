@@ -1,5 +1,8 @@
 # CatsXpertApp
 
+## Instrucciones de Login
+El ingreso a la app siempre es con la contraseña 1234, no importa cual contraseña se use para registrar un usuario
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.5.
 
 ## Development server

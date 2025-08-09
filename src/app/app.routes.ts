@@ -22,11 +22,8 @@ export const routes: Routes = [
   },
   {
     path: 'user-info',
-    loadComponent: () => import('./components/user-info/user-info').then(m => m.UserInfo)
-  },
-  {
-    path: 'cats-filter',
-    loadComponent: () => import('./components/cats-filter/cats-filter').then(m => m.CatsFilter)
+    loadComponent: () => import('./components/user-info/user-info').then(m => m.UserInfo),
+    canActivate: [authGuardGuard]
   },
   {
     path: '**',

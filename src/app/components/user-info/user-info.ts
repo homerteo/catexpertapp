@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { Users } from '../../services/users';
 
 @Component({
   selector: 'app-user-info',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './user-info.scss'
 })
 export class UserInfo {
+  private userService = inject(Users);
+
+  readonly userInfo = this.userService.currentUser;
+
+
 
 }
