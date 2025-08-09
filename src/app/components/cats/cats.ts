@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Cat } from '../../services/cat';
 import { CommonModule } from '@angular/common';
+import { Users } from '../../services/users';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class Cats implements OnInit {
   private catsService = inject(Cat);
+  private userService = inject(Users);
 
   breeds = this.catsService.breeds;
   selectedBreed = this.catsService.selectedBreed;
@@ -29,5 +31,9 @@ export class Cats implements OnInit {
     if(target.value && target.value !== 'null') {
       this.catsService.loadSelectedBreed(target.value);
     }
+  }
+
+  logout() {
+    this.userService.logout();
   }
 }
