@@ -20,7 +20,7 @@ export class Cats implements OnInit {
   selectedBreedImage = this.catsService.selectedBreedImage;
 
   ngOnInit(): void {
-    this.catsService.loadBreeds();
+    this.catsService.loadBreeds(20);
   }
 
   onSelectBreed(event: Event): void {
